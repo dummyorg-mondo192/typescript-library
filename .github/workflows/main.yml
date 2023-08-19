@@ -41,8 +41,8 @@ jobs:
         uses: jfrog/setup-jfrog-cli@v3.4.0
         env:
           JF_URL: ${{ secrets.JF_URL }}
-          JF_USER: ${{ secrets.JF_PASSWORD }}
-          JF_PASSWORD: ${{ secrets.JF_PASSWORD }}
+          JF_USER: ${{ secrets.JF_USER }}
+          JF_ACCESS_TOKEN: ${{ secrets.JF_ACCESS_TOKEN }}
         with:
           version: "2.45.0"
       

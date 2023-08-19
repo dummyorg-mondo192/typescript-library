@@ -53,7 +53,8 @@ jobs:
       - name: Config Server
         run: |
           jf config add mondo192 \ 
-            --access-token=${{ secrets.JF_ACCESS_TOKEN }}
+            --access-token=${{ secrets.JF_ACCESS_TOKEN }} \
+            --access-token-stdin=true \
             --url=https://mondo192.jfrog.io \
             --artifactory-url=https://mondo192.jfrog.io/artifactory/ \
             --distribution-url=https://mondo192.jfrog.io/distribution/ \

@@ -58,8 +58,7 @@ jobs:
             --distribution-url=https://mondo192.jfrog.io/distribution/ \
             --xray-url=https://mondo192.jfrog.io/xray/ \ 
             --mission-control-url=https://mondo192.jfrog.io/mc/ \
-            --pipelines-url=https://mondo192.jfrog.io/pipelines/ \
-            --interactive=false
+            --pipelines-url=https://mondo192.jfrog.io/pipelines/ --interactive=false
 
       - name: Publish artifact
         run: |

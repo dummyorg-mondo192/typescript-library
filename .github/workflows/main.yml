@@ -50,6 +50,9 @@ jobs:
         run: |
           jf rt ping
 
+      - name: Config npm
+        run: jf npmc --repo-deploy=default-npm-local --repo-resolve=default-npm --server-id-deploy=mondo192 --server-id-resolve=mondo192
+
       - name: Publish artifact
         run: |
           jf npm p

@@ -1,7 +1,7 @@
 version: 1
 type: npm
 resolver:
-  repo: default-npm-local
+  repo: default-npm
   serverId: mondo192
 deployer:
   repo: default-npm-local

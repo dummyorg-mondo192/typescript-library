@@ -42,7 +42,6 @@ jobs:
           jf rt ping
           jf npm-config --repo-deploy=default-npm-local --repo-resolve=default-npm --server-id-deploy=mondo192 --server-id-resolve=mondo192
           jf rt build-add-git
-          jf rt build-append
           jf rt build-collect-env
           jf rt build-publish
           jf npm publish

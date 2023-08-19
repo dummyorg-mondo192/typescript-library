@@ -32,5 +32,5 @@ jobs:
           cache: pnpm
       
       - name: Install dependencies
-        uses: pnpm install --frozen-lockfile
+        uses: pnpm i --frozen-lockfile
 

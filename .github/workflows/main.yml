@@ -4,6 +4,8 @@ on:
   push: 
     branches:
       - main
+    tags: 
+      - v*
   pull_request:
     types: 
         - closed
@@ -11,7 +13,9 @@ on:
         - synchronize
 
 jobs:
-  build:
+  main:
+    permissions: 
+      contents: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -28,7 +32,13 @@ jobs:
         run: npm install
 
       - name: Build library
-        run: npm run build
+        run: npm run build        
+
+      - name: go-semantic-release
+        uses: go-semantic-release/action@v1.21.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          update-file: package.json
 
       - uses: jfrog/setup-jfrog-cli@v3.4.0
         env:

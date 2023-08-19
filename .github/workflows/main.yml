@@ -43,10 +43,14 @@ jobs:
         with:
           version: "2.45.0"
       
-      - name: Send ping to Artifactory
+      - name: Publish artifact
         run: |
           jf c use mondo192
           jf rt ping
+          jf rt bce my-npm-build 1
+          jf rt npm-publish --build-name=my-npm-build --build-number=1
+          jf rt bp my-npm-build 1
+
       
       # - name: Setup JFrog CLI
       #   uses: jfrog/setup-jfrog-cli@v3.4.0

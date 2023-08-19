@@ -48,10 +48,12 @@ jobs:
           jf c use mondo192
           jf rt ping
           jf npm-config --repo-deploy=default-npm-local --repo-resolve=default-npm --server-id-deploy=mondo192 --server-id-resolve=mondo192
-          jf rt build-collect-env my-npm-build 1
-          jf rt build-add-git my-npm-build 1
-          jf npm publish --build-name=my-npm-build --build-number=1
-          jf rt build-publish my-npm-build 1
+          jf rt build-add-dependencies
+          jf rt build-add-git
+          jf rt build-append
+          jf rt build-collect-env
+          jf rt build-publish
+          jf npm publish
 
       
       # - name: Setup JFrog CLI

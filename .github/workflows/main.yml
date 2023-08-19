@@ -55,6 +55,7 @@ jobs:
           jf config add mondo192 \ 
             --access-token=${{ secrets.JF_ACCESS_TOKEN }} \
             --interactive=false \
+            --overwrite=true \
             --url=${{ secrets.JF_URL }} \
             --user=${{ secrets.JF_USER }}
 

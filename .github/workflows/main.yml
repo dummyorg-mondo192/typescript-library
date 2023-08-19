@@ -36,6 +36,14 @@ jobs:
         
 
       - name: Setup JFrog CLI
-        uses: jfrog/setup-jfrog-cli@v1
+        uses: jfrog/setup-jfrog-cli@v3.4.0
+        env:
+          JF_URL: ${{ secrets.JF_URL }}
+          JF_USER: ${{ secrets.JF_PASSWORD }}
+          JF_PASSWORD: ${{ secrets.JF_PASSWORD }}
+      
+      - name: Ping JFrog Platform 
+        run: |
+          jf rt ping
 
 

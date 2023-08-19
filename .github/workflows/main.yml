@@ -30,4 +30,7 @@ jobs:
           check-latest: true
             # registry-url: "mondo192.jfrog.io"
           cache: pnpm
+      
+      - name: Install dependencies
+        uses: pnpm install --frozen-lockfile
 

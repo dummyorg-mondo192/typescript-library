@@ -37,27 +37,38 @@ jobs:
       - name: Build library
         run: pnpm build
 
-      - name: Setup JFrog CLI
-        uses: jfrog/setup-jfrog-cli@v3.4.0
+      - uses: jfrog/setup-jfrog-cli@v3.4.0
         env:
-          JF_URL: ${{ secrets.JF_URL }}
-          JF_USER: ${{ secrets.JF_USER }}
-          JF_ACCESS_TOKEN: ${{ secrets.JF_ACCESS_TOKEN }}
+          JF_ENV_1: ${{ secrets.JF_SECRET_ENV_1 }}
         with:
           version: "2.45.0"
       
-      - name: Ping JFrog Platform 
+      - name: Send ping to Artifactory
         run: |
           jf rt ping
+      
+      # - name: Setup JFrog CLI
+      #   uses: jfrog/setup-jfrog-cli@v3.4.0
+      #   env:
+      #     JF_URL: ${{ secrets.JF_URL }}
+      #     JF_USER: ${{ secrets.JF_USER }}
+      #     JF_ACCESS_TOKEN: ${{ secrets.JF_ACCESS_TOKEN }}
+      #   with:
+      #     version: "2.45.0"
+      
+      # - name: Send ping to Artifactory
+      #   run: |
+      #     jf rt ping
 
-      - name: Config Server
-        run: |
-          jf config add mondo192 --access-token=${{ secrets.JF_ACCESS_TOKEN }} --interactive=false --overwrite=true --url=https://mondo192.jfrog.io --user=github-actions
+      # - name: Add server configuration
+      #   run: |
+      #     jf config add mondo192 --access-token=${{ secrets.JF_ACCESS_TOKEN }} --interactive=false --overwrite=true --url=https://mondo192.jfrog.io --user=github-actions
 
-      - name: Publish artifact
-        run: |
-          jf npmc --repo-deploy=default-npm-local --repo-resolve=default-npm --server-id-deploy=mondo192 --server-id-resolve=mondo192
-          jf rt bag ${{ github.repository  }} 0.0.1
-          jf npm p
-          jf rt bp ${{ github.repository }} 0.0.1
+      # - name: Generate NPM configuration
+      #   run: |
+      #     jf npmc --repo-deploy=default-npm-local --repo-resolve=default-npm --server-id-deploy=mondo192 --server-id-resolve=mondo192
+          
+      # - name: Publish NPM package to Artifactory
+      #   run: |
+      #     jf npm p
 

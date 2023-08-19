@@ -1,3 +1,7 @@
-export const add = (x: number, y: number) => {
+export const add = (x: number, y: number): number => {
     return x + y
+}
+
+export const minus = (x: number, y: number): number => {
+    return x - y;
 }

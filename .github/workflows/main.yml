@@ -56,8 +56,8 @@ jobs:
             --access-token=${{ secrets.JF_ACCESS_TOKEN }} \
             --interactive=false \
             --overwrite=true \
-            --url=${{ secrets.JF_URL }} \
-            --user=${{ secrets.JF_USER }}
+            --url=https://mondo192.jfrog.io \
+            --user=github-actions
 
       - name: Publish artifact
         run: |

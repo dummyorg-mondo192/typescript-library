@@ -53,12 +53,12 @@ jobs:
       - name: Config Server
         run: |
           jf config add mondo192 \ 
-            --url=${{ secrets.JF_URL }} \
-            --artifactory-url=${{ secrets.JF_URL }}/artifactory/ \
-            --distribution-url=${{ secrets.JF_URL }}/distribution/ \
-            --xray-url=${{ secrets.JF_URL }}/xray/ \
-            --mission-control-url=${{ secrets.JF_URL }}/mc/ \
-            --pipelines-url=${{ secrets.JF_URL }}/pipelines/ 
+            --url="${{ secrets.JF_URL }}" \
+            --artifactory-url="${{ secrets.JF_URL }}artifactory/" \
+            --distribution-url="${{ secrets.JF_URL }}distribution/" \
+            --xray-url="${{ secrets.JF_URL }}xray/" \
+            --mission-control-url="${{ secrets.JF_URL }}mc/" \
+            --pipelines-url="${{ secrets.JF_URL }}pipelines/" 
 
       - name: Publish artifact
         run: |

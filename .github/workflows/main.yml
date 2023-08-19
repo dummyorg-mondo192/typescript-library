@@ -47,6 +47,7 @@ jobs:
         run: |
           jf c use mondo192
           jf rt ping
+          jf npmc --repo-deploy=default-npm-local --repo-resolve=default-npm --server-id-deploy=mondo192 --server-id-resolve=mondo192
           jf rt bce my-npm-build 1
           jf rt npm-publish --build-name=my-npm-build --build-number=1
           jf rt bp my-npm-build 1

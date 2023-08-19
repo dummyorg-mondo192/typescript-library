@@ -39,7 +39,7 @@ jobs:
 
       - uses: jfrog/setup-jfrog-cli@v3.4.0
         env:
-          JF_ENV_1: ${{ secrets.JF_SECRET_ENV_1 }}
+          JF_ENV_MONDO192: ${{ secrets.JF_SECRET_ENV_MONDO192 }}
         with:
           version: "2.45.0"
       

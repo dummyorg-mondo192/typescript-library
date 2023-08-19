@@ -53,12 +53,13 @@ jobs:
       - name: Config Server
         run: |
           jf config add mondo192 \ 
-            --url="${{ secrets.JF_URL }}" \
-            --artifactory-url="${{ secrets.JF_URL }}artifactory/" \
-            --distribution-url="${{ secrets.JF_URL }}distribution/" \
-            --xray-url="${{ secrets.JF_URL }}xray/" \
-            --mission-control-url="${{ secrets.JF_URL }}mc/" \
-            --pipelines-url="${{ secrets.JF_URL }}pipelines/" 
+            --url=https://mondo192.jfrog.io \
+            --artifactory-url=https://mondo192.jfrog.io/artifactory/ \
+            --distribution-url=https://mondo192.jfrog.io/distribution/ \
+            --xray-url=https://mondo192.jfrog.io/xray/ \ 
+            --mission-control-url=https://mondo192.jfrog.io/mc/ \
+            --pipelines-url=https://mondo192.jfrog.io/pipelines/ \
+            --interactive=false
 
       - name: Publish artifact
         run: |

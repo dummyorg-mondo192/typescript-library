@@ -55,5 +55,7 @@ jobs:
 
       - name: Publish artifact
         run: |
+          jf rt bag ${{ github.repository  }} 0.0.1
           jf npm p
+          jf rt bp ${{ github.repository }} 0.0.1
 

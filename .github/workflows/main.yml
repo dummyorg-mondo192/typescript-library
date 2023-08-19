@@ -52,12 +52,7 @@ jobs:
 
       - name: Config Server
         run: |
-          jf config add mondo192 \ 
-            --access-token=${{ secrets.JF_ACCESS_TOKEN }} \
-            --interactive=false \
-            --overwrite=true \
-            --url=https://mondo192.jfrog.io \
-            --user=github-actions
+          jf config add mondo192 --access-token=${{ secrets.JF_ACCESS_TOKEN }} --interactive=false --overwrite=true --url=https://mondo192.jfrog.io --user=github-actions
 
       - name: Publish artifact
         run: |

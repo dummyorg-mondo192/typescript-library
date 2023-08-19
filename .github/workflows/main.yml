@@ -9,7 +9,6 @@ on:
         - closed
         - opened
         - synchronize
-  workflow_dispatch: 
 
 jobs:
   build:
@@ -18,24 +17,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3.5.3
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v2.4.0
-        with:
-          version: 8
-
       - name: Setup Node.js environment
         uses: actions/setup-node@v3.8.1
         with:
           node-version-file: ".nvmrc"
           check-latest: true
-          registry-url: ${{ secrets.JF_URL }}
-          cache: pnpm
+          cache: npm
       
       - name: Install dependencies
-        run: pnpm i --frozen-lockfile
+        run: npm ci
 
       - name: Build library
-        run: pnpm build
+        run: npm build
 
       - uses: jfrog/setup-jfrog-cli@v3.4.0
         env:
@@ -46,38 +39,9 @@ jobs:
       - name: Publish artifact
         run: |
           jf c use mondo192
-          jf rt ping
           jf npm-config --repo-deploy=default-npm-local --repo-resolve=default-npm --server-id-deploy=mondo192 --server-id-resolve=mondo192
-          jf rt build-add-dependencies
           jf rt build-add-git
           jf rt build-append
           jf rt build-collect-env
           jf rt build-publish
           jf npm publish
-
-      
-      # - name: Setup JFrog CLI
-      #   uses: jfrog/setup-jfrog-cli@v3.4.0
-      #   env:
-      #     JF_URL: ${{ secrets.JF_URL }}
-      #     JF_USER: ${{ secrets.JF_USER }}
-      #     JF_ACCESS_TOKEN: ${{ secrets.JF_ACCESS_TOKEN }}
-      #   with:
-      #     version: "2.45.0"
-      
-      # - name: Send ping to Artifactory
-      #   run: |
-      #     jf rt ping
-
-      # - name: Add server configuration
-      #   run: |
-      #     jf config add mondo192 --access-token=${{ secrets.JF_ACCESS_TOKEN }} --interactive=false --overwrite=true --url=https://mondo192.jfrog.io --user=github-actions
-
-      # - name: Generate NPM configuration
-      #   run: |
-      #     jf npmc --repo-deploy=default-npm-local --repo-resolve=default-npm --server-id-deploy=mondo192 --server-id-resolve=mondo192
-          
-      # - name: Publish NPM package to Artifactory
-      #   run: |
-      #     jf npm p
-

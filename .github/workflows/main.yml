@@ -33,4 +33,9 @@ jobs:
       
       - name: Install dependencies
         run: pnpm i --frozen-lockfile
+        
+
+      - name: Setup JFrog CLI
+        uses: jfrog/setup-jfrog-cli@v1
+
 

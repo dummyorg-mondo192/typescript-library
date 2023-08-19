@@ -45,6 +45,7 @@ jobs:
       
       - name: Send ping to Artifactory
         run: |
+          jf c use mondo192
           jf rt ping
       
       # - name: Setup JFrog CLI

@@ -41,7 +41,7 @@ jobs:
           jf c use mondo192
           jf rt ping
           jf npm-config --repo-deploy=default-npm-local --repo-resolve=default-npm --server-id-deploy=mondo192 --server-id-resolve=mondo192
-          jf rt build-add-git
           jf rt build-collect-env
-          jf rt build-publish
+          jf rt build-add-git
           jf npm publish
+          jf rt build-publish

@@ -33,7 +33,9 @@ jobs:
       
       - name: Install dependencies
         run: pnpm i --frozen-lockfile
-        
+
+      - name: Build library
+        run: pnpm build
 
       - name: Setup JFrog CLI
         uses: jfrog/setup-jfrog-cli@v3.4.0
@@ -41,6 +43,8 @@ jobs:
           JF_URL: ${{ secrets.JF_URL }}
           JF_USER: ${{ secrets.JF_PASSWORD }}
           JF_PASSWORD: ${{ secrets.JF_PASSWORD }}
+        with:
+          version: "2.45.0"
       
       - name: Ping JFrog Platform 
         run: |

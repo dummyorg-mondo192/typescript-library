@@ -22,7 +22,6 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Publish artifact
-        uses: dummyorg-mondo192/artifactory-publish@main
+        uses: dummyorg-mondo192/artifactory-publish@test
         with:
-          jf-env-mondo192: ${{ secrets.JF_SECRET_ENV_MONDO192 }}
           repository-type: "npm"

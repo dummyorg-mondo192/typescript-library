@@ -19,39 +19,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3.5.3
+        uses: actions/checkout@v4
 
-      - name: Setup Node.js environment
-        uses: actions/setup-node@v3.8.1
-        with:
-          node-version-file: ".nvmrc"
-          check-latest: true
-          cache: npm
-      
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build library
-        run: npm run build        
-
-      - name: go-semantic-release
-        uses: go-semantic-release/action@v1.21.0
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          update-file: package.json
-
-      - uses: jfrog/setup-jfrog-cli@v3.4.0
-        env:
-          JF_ENV_MONDO192: ${{ secrets.JF_SECRET_ENV_MONDO192 }}
-        with:
-          version: "2.45.0"
-      
       - name: Publish artifact
-        run: |
-          jf c use mondo192
-          jf rt ping
-          jf npm-config --repo-deploy=default-npm-local --repo-resolve=default-npm --server-id-deploy=mondo192 --server-id-resolve=mondo192
-          jf rt build-collect-env
-          jf rt build-add-git
-          jf npm publish
-          jf rt build-publish
+        uses: dummyorg-mondo192/artifactory-publish@main
+        with:
+          jf-env-mondo192: ${{ secrets.JF_SECRET_ENV_MONDO192 }}
+          repository-type: "npm"

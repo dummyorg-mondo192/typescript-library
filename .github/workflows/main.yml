@@ -1,27 +1,9 @@
 name: CI
-
-on:
-  push: 
-    branches:
-      - main
-    tags: 
-      - v*
-  pull_request:
-    types: 
-        - closed
-        - opened
-        - synchronize
-
+run-name: ${{ github.workflow }} started by @${{ github.triggering_actor}}
+on: [push]
 jobs:
   main:
-    permissions: 
-      contents: write
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: Publish artifact
-        uses: dummyorg-mondo192/artifactory-publish@test
-        with:
-          repository-type: "npm"
